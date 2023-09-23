@@ -18,13 +18,16 @@ class DocumentEmbedder:
         knowledge_base (str): The name path of the knowledge base.
         documents_path (str, optional): The path to the directory containing RAW knowledge base. Default is "Documents".
         output_path (str, optional): The path to the directory where the vectorized documents will be stored. Default is "Storage".
+        embeddings (langchain embedding, optional), embedding to use to vectorize documents 
     """
 
-    def __init__(self, knowledge_base: str, documents_path: str = "Documents", output_path: str = "Storage"):
+    def __init__(self, knowledge_base: str, documents_path: str = "Documents", output_path: str = "Storage", embeddings = OpenAIEmbeddings()):
         self.knowledge_base = knowledge_base
         self.documents_path = documents_path
         self.output_folder_path = os.path.join(output_path, self.knowledge_base)
         self.documents = []
+        self.embeddings = embeddings
+
 
     def load_txt(self, path: str):
         """
@@ -79,7 +82,7 @@ class DocumentEmbedder:
         """
         Vectorize the documents and store them using FAISS vector store.
         """
-        embeddings = OpenAIEmbeddings()
+        embeddings = self.embeddings
         print(f"{len(self.documents)} documents will be stored")
         vectorstore = FAISS.from_documents(
             documents=self.documents, embedding=embeddings
