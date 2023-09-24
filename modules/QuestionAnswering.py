@@ -32,7 +32,7 @@ class QuestionAnswering:
         answer(self, text: str):
             Returns the answer for a user query.
     """
-    def __init__(self, documentEmbedder, behavior="", template="""
+    def __init__(self, documentEmbedder, documents_amount=5, behavior="", template="""
             Use the following pieces of context to answer the question at the end.
             If you don't know the answer, just say that you don't know, don't try to make up an answer.
             {context}, 
@@ -59,14 +59,12 @@ class QuestionAnswering:
         self.embeddings=documentEmbedder.embeddings
         self.template = behavior + template
         self.llm= ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0) 
+        self.documents_amount = documents_amount
         self.set_retrieval()
 
-    def set_retrieval(self, documents_amount:int = 3):
+    def set_retrieval(self):
         """
         set the retriever to be used for question answering.
-
-        Args:
-            documents_amount (int): The number of docmuents to be retrieved in each query. Default is 3
 
         Returns:
             None
@@ -76,7 +74,7 @@ class QuestionAnswering:
         self.qa = RetrievalQA.from_chain_type(llm=self.llm, 
                                      chain_type="stuff", 
                                      chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}, 
-                                     retriever=vectorstore.as_retriever(search_type="similarity",search_kwargs={'k': documents_amount, 'lambda_mult': 0.5}),
+                                     retriever=vectorstore.as_retriever(search_type="similarity",search_kwargs={'k': self.documents_amount, 'lambda_mult': 0.5}),
                                      return_source_documents=True, 
                                      verbose=True
                                     )
@@ -99,6 +97,7 @@ class QuestionAnswering:
             result = result["result"]
         else:
             result = "please write a Question"
+        sources=list(set(sources))
         return result, sources  
 
 
