@@ -22,7 +22,8 @@ For simple deployment of the docker containerized application execute the follow
 ## Usage
 ### User Interface
 you can try the application via a simple user interface after deploying  
-[0.0.0.0:8888](http://0.0.0.0:8888)
+[0.0.0.0:8888](http://0.0.0.0:8888)  
+![interface](https://github.com/jhpiedrahitao/documentation-wiki/assets/14959173/4dd3f791-362a-439b-a141-92b601b14f65)
 ### REST API
 Uri: [0.0.0.0:5589/sagemaker](http://0.0.0.0:5589/sagemaker)  
 Method: POST  
