@@ -1,0 +1,134 @@
+|question|answer|model|response
+0|What is the name of the model?|The name of the model is 'No interruption'.|gpt-3.5-turbo|The name of the model is not specified in the given context.
+1|What is the type and properties of the AWS SageMaker FeatureGroup?|The type of the AWS SageMaker FeatureGroup is 'AWS::SageMaker::FeatureGroup'. The properties of the FeatureGroup include: 'Description', 'EventTimeFeatureName', 'FeatureDefinitions', 'FeatureGroupName', 'OfflineStoreConfig', 'OnlineStoreConfig', 'RecordIdentifierFeatureName', 'RoleArn', and 'Tags'.|gpt-3.5-turbo|"The type of the AWS SageMaker FeatureGroup is ""AWS::SageMaker::FeatureGroup"". 
+
+The properties of the AWS SageMaker FeatureGroup are as follows:
+
+- Description: A free form description of the FeatureGroup.
+- EventTimeFeatureName: The name of the feature that stores the event time.
+- FeatureDefinitions: A list of FeatureDefinition objects that define the features in the FeatureGroup.
+- FeatureGroupName: The name of the FeatureGroup.
+- OfflineStoreConfig: The configuration for the offline store of the FeatureGroup.
+- OnlineStoreConfig: The configuration for the online store of the FeatureGroup.
+- RecordIdentifierFeatureName: The name of the feature that stores the record identifier.
+- RoleArn: The Amazon Resource Name (ARN) of the IAM role that has permissions to access the FeatureGroup.
+- Tags: A list of tags to associate with the FeatureGroup.
+
+Note: At least one of OnlineStoreConfig and OfflineStoreConfig must be included to create a FeatureGroup."
+2|What is the cause of the error in the CloudWatch log?|The error in the CloudWatch log is caused by an attempt to copy a sequence with size 785 to an array axis with dimension 784, which is not possible.|gpt-3.5-turbo|The cause of the error in the CloudWatch log is misspecifying a hyperparameter or specifying a hyperparameter that is invalid for the algorithm.
+3|What command should be used to obtain the OpenID Connect issuer URL?|To obtain the OpenID Connect issuer URL, you should use the following command: aws eks describe-cluster --name ${CLUSTER_NAME} --region ${AWS_REGION} --query cluster.identity.oidc.issuer --output text|gpt-3.5-turbo|"The command that should be used to obtain the OpenID Connect issuer URL is:
+
+aws eks describe-cluster --name ${CLUSTER_NAME} --region ${AWS_REGION} \
+      --query cluster.identity.oidc.issuer --output text"
+4|What is the purpose of the 'StoppingCondition' in a monitoring job?|The 'StoppingCondition' is a time limit for how long the monitoring job is allowed to run before stopping.|gpt-3.5-turbo|The purpose of the 'StoppingCondition' in a monitoring job is to specify a limit on how long the job can run. When the job reaches the specified time limit, SageMaker will automatically end the monitoring job. This helps to cap the costs associated with the monitoring job and ensures that it does not run indefinitely. Additionally, when the job is stopped, SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. This allows algorithms to save the model artifacts within this window, preventing the loss of training results.
+5|What is the purpose of the BaseliningJobName property in the YAML?|The BaseliningJobName property in the YAML is used to specify the name of the job that performs baselining for the data quality monitoring job. It is used to identify and track the specific job that is responsible for generating baseline resources for monitoring constraints and statistics. This property is essential for the configuration and management of data quality monitoring jobs.|gpt-3.5-turbo|The purpose of the BaseliningJobName property in the YAML is to specify the name of the job that performs baselining for the data quality monitoring job.
+6|What is the purpose of the AWS::SageMaker::ModelCard TrainingMetric entity?|The AWS::SageMaker::ModelCard TrainingMetric entity represents a result from a SageMaker training job. It is used to declare and define properties related to the training job result in an AWS CloudFormation template. The entity has properties such as Name, Notes, and Value. The Name property represents the name of the result from the training job, while the Notes property provides additional notes describing the result. The Value property represents the actual value of the result obtained from the training job.|gpt-3.5-turbo|The purpose of the AWS::SageMaker::ModelCard TrainingMetric entity is to represent a result from a SageMaker training job. It includes properties such as the name of the result, any additional notes describing the result, and the value of the result. This entity is used to provide information about the training metrics of a model in the AWS CloudFormation template.
+7|What is the purpose of the 'CreationTime' property in YAML?|The 'CreationTime' property in YAML represents the time at which the monitoring job was created.|gpt-3.5-turbo|The 'CreationTime' property in YAML is used to specify the time at which the monitoring job was created.
+8|What is the purpose of SageMakerMachineLearningModelResourceData in AWS Greengrass?|SageMakerMachineLearningModelResourceData is a resource in AWS Greengrass that provides settings for a Secrets Manager machine learning resource. It is used for performing machine learning inference in the AWS IoT Greengrass Version 1 Developer Guide. In an AWS CloudFormation template, SageMakerMachineLearningModelResourceData can be used in the 'resourcedatacontainer' property type of the 'greengrass-resourcedefinitionversion' resource.|gpt-3.5-turbo|The purpose of SageMakerMachineLearningModelResourceData in AWS Greengrass is to provide settings for a Secrets Manager machine learning resource. It allows you to specify the destination path, owner setting, and SageMaker job ARN for the resource. This resource can be used in an AWS CloudFormation template to define the properties of the resource data container in a Greengrass resource definition.
+9|What is the type of the JobDefinitionExecutionRole?|The type of the JobDefinitionExecutionRole is 'AWS::IAM::Role'.|gpt-3.5-turbo|"The type of the JobDefinitionExecutionRole is ""AWS::IAM::Role""."
+10|What does the 'AWS::SageMaker::UserProfile ResourceSpec' specify?|The 'AWS::SageMaker::UserProfile ResourceSpec' specifies the ARN's of a SageMaker image and SageMaker image version, and the instance type that the version runs on.|gpt-3.5-turbo|The 'AWS::SageMaker::UserProfile ResourceSpec' specifies the instance type, SageMaker image ARN, and SageMaker image version ARN that the user profile uses.
+11|What should you do when the project appears in the Projects list with a Status of Create completed?|Move on to the next step.|gpt-3.5-turbo|When the project appears in the Projects list with a Status of Create completed, you can move on to the next step.
+12|What are the different attributes of the ProbabilityThresholdAttribute in the SageMaker ModelBiasJobDefinition BatchTransformInput?|The SageMaker ModelBiasJobDefinition BatchTransformInput has a ProbabilityThresholdAttribute with a data type of Double.|gpt-3.5-turbo|"The different attributes of the ProbabilityThresholdAttribute in the SageMaker ModelBiasJobDefinition BatchTransformInput are:
+
+- [ProbabilityThresholdAttribute](#cfn-sagemaker-modelbiasjobdefinition-batchtransforminput-probabilitythresholdattribute): Double"
+13|What resources were deleted?|The following resources were deleted: clusterrole.rbac.authorization.k8s.io 'sagemaker-k8s-operator-manager-role', clusterrole.rbac.authorization.k8s.io 'sagemaker-k8s-operator-proxy-role', rolebinding.rbac.authorization.k8s.io 'sagemaker-k8s-operator-leader-election-rolebinding', clusterrolebinding.rbac.authorization.k8s.io 'sagemaker-k8s-operator-manager-rolebinding', clusterrolebinding.rbac.authorization.k8s.io 'sagemaker-k8s-operator-proxy-rolebinding', service 'sagemaker-k8s-operator-controller-manager-metrics-service', deployment.apps 'sagemaker-k8s-operator-controller-manager', and secrets 'sagemaker-k8s-operator-abcde'.|gpt-3.5-turbo|The resources that were deleted include the Service Catalog provisioned product (CodeCommit, CodePipeline, and CodeBuild resources) created for the project, as well as the AWS CloudFormation stacks for staging and production.
+14|What is the type of the AWS resource 'Model'?|The type of the AWS resource 'Model' is 'AWS::SageMaker::Model'.|gpt-3.5-turbo|"The type of the AWS resource 'Model' is ""AWS::SageMaker::Model""."
+15|What is the value of 'InstanceType' in the 'ClusterConfig' of 'MonitoringResources'?|'InstanceType' in the 'ClusterConfig' of 'MonitoringResources' is 'ml.m5.large'.|gpt-3.5-turbo|The value of 'InstanceType' in the 'ClusterConfig' of 'MonitoringResources' is a string.
+16|What does the Task state in this example create?|The Task state in this example creates an Amazon SageMaker labeling job.|gpt-3.5-turbo|The Task state in this example creates an Amazon SageMaker transform job.
+17|What was the previous status of the pipeline execution?|The previous status of the pipeline execution was 'Executing'.|gpt-3.5-turbo|"The previous status of the pipeline execution was ""Executing""."
+18|What are the parameters required by the RLEstimator?|The parameters required by the RLEstimator are: the source directory where the environment, presets, and training code are uploaded, the path to the training script, the RL toolkit and deep learning framework to be used (which automatically resolves to the Amazon ECR path for the RL container), the training parameters (such as instance count, job name, and S3 path for output), and the metric definitions that you want to capture in your logs (which can also be visualized in CloudWatch and in SageMaker notebooks).|gpt-3.5-turbo|"The parameters required by the RLEstimator are:
+
+1. Source directory: The directory where the environment, presets, and training code are uploaded.
+2. Training script path: The path to the training script.
+3. RL toolkit and deep learning framework: The RL toolkit and deep learning framework you want to use. This automatically resolves to the Amazon ECR path for the RL container.
+4. Training parameters: Parameters such as instance count, job name, and S3 path for output.
+5. Metric definitions: Definitions of metrics that you want to capture in your logs. These can also be visualized in CloudWatch and SageMaker notebooks."
+19|How do you delete a project in Studio?|"To delete a project in Studio, follow these steps:
+1. Sign in to Studio.
+2. In the Studio sidebar, choose the Home icon.
+3. Select Deployments from the menu, and then select Projects.
+4. Select the target project from the dropdown list. If you don’t see your project, type the project name and apply the filter to find your project.
+5. Once you've found your project, select the project name to view details.
+6. Choose Delete from the Actions menu.
+7. Confirm your choice by choosing Delete from the Delete Project window."|gpt-3.5-turbo|"To delete a project in Studio, you can follow these steps:
+
+1. Sign in to Studio.
+2. In the Studio sidebar, click on the Home icon.
+3. Select Deployments from the menu, and then select Projects.
+4. Choose the target project from the dropdown list. If you don't see your project, type the project name and apply the filter to find your project.
+5. Once you've found your project, select the project name to view details.
+6. Choose Delete from the Actions menu.
+7. Confirm your choice by choosing Delete from the Delete Project window.
+
+Please note that deleting a project will also delete the Service Catalog provisioned product that the project created, including the CodeCommit, CodePipeline, and CodeBuild resources. Additionally, you will need to delete the AWS CloudFormation stacks that the project created, which include one for staging and one for production. The stack names follow the format ""sagemaker-projectname-project-id-deploy-staging"" and ""sagemaker-projectname-project-id-deploy-prod"", where projectname is the name of your project and project-id is the ID of your project."
+20|What validations tasks does SageMaker use to validate algorithms before listing them on AWS Marketplace?|SageMaker uses the validation profile and sample data to run the following validation tasks: creating a training job to verify the training image works with SageMaker, creating a model using the algorithm's inference image and the model artifacts produced by the training job if inference code is included, and creating a transform job using the model to verify that the inference image works with SageMaker if inference code is included.|gpt-3.5-turbo|"SageMaker uses the following validation tasks to validate algorithms before listing them on AWS Marketplace:
+
+1. Create a training job in your account to verify that your training image works with SageMaker.
+2. If you included inference code in your algorithm, create a model in your account using the algorithm's inference image and the model artifacts produced by the training job.
+3. If you included inference code in your algorithm, create a transform job in your account using the model to verify that your inference image works with SageMaker.
+
+These validation tasks ensure that the algorithm functions as expected before it can be listed and published on AWS Marketplace."
+21|What is the purpose of using simulators in RL environments?|Simulators are used in RL environments to mimic real-world scenarios. They process the impact of actions taken by agents and return the next state and a reward. Simulators are useful when it is not safe to train an agent in the real world or when the RL algorithm takes a long time to converge.|gpt-3.5-turbo|The purpose of using simulators in RL environments is to mimic real-world scenarios and allow agents to interact with the environment without the need for training in the actual real world. Simulators process the impact of actions taken by agents and provide the next state and a reward, which is used for training RL models. Simulators are particularly useful in situations where it may be unsafe or impractical to train agents in the real world, or when the RL algorithm takes a long time to converge.
+22|What are the steps to install the operator onto the cluster?|"To install the operator onto the cluster, follow these steps:
+1. Apply the CRD installer YAML by running the command 'kubectl apply -f https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/release/rolebased/namespaced/crd.yaml'
+2. Download the operator installer YAML by running the command 'wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/release/rolebased/namespaced/operator.yaml'
+3. Update the installer YAML to place the resources into your specified namespace using the command 'sed -i -e 's/PLACEHOLDER-NAMESPACE/<YOUR NAMESPACE>/g' operator.yaml'
+4. Edit the operator.yaml file to place resources into your eks.amazonaws.com/role-arn. Replace the ARN here with the Amazon Resource Name (ARN) for the OIDC-based role you’ve created.
+5. Deploy the cluster using the command 'kubectl apply -f operator.yaml'
+6. Deploy the Operator to Your Namespace Using Helm Charts."|gpt-3.5-turbo|"To install the operator onto the cluster, you can follow these steps:
+
+1. Clone the Helm installer directory using the command: 
+   ```
+   git clone https://github.com/aws/amazon-sagemaker-operator-for-k8s.git
+   ```
+
+2. Navigate to the `amazon-sagemaker-operator-for-k8s/hack/charts/installer/namespaced` folder.
+
+3. Edit the `rolebased/values.yaml` file and replace the role ARN with the Amazon Resource Name (ARN) for the OIDC-based role you've created.
+
+4. Install the CRDs into the cluster if you haven't already done so. Apply the CRD installer YAML using the command:
+   ```
+   kubectl apply -f https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/release/rolebased/namespaced/crd.yaml
+   ```
+
+5. Download the operator installer YAML using the command:
+   ```
+   wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/release/rolebased/namespaced/operator.yaml
+   ```
+
+6. Update the installer YAML to place the resources into your specified namespace using the command:
+   ```
+   sed -i -e 's/PLACEHOLDER-NAMESPACE/<YOUR NAMESPACE>/g' operator.yaml
+   ```
+
+7. Edit the `operator.yaml` file and replace the eks.amazonaws.com/role-arn with the Amazon Resource Name (ARN) for the OIDC-based role you've created.
+
+8. Deploy the cluster using the command:
+   ```
+   kubectl apply -f operator.yaml
+   ```
+
+These steps will install the operator onto the cluster."
+23|What does the Csv property type specify for an AWS::SageMaker::ModelQualityJobDefinition?|The Csv property type specifies Property description not available.|gpt-3.5-turbo|"The Csv property type specifies a boolean value for the ""Header"" property of an AWS::SageMaker::ModelQualityJobDefinition."
+24|What is the version of the SageMaker Edge Manager agent binary installed by SageMaker Edge Manager component v1.3.x?|The version of the SageMaker Edge Manager agent binary installed by SageMaker Edge Manager component v1.3.x is v1.20220822.836f3023.|gpt-3.5-turbo|The version of the SageMaker Edge Manager agent binary installed by SageMaker Edge Manager component v1.3.x is v1.20220822.836f3023.
+25|What is the type of the JobDefinition?|The type of the JobDefinition is AWS::SageMaker::ModelExplainabilityJobDefinition.|gpt-3.5-turbo|"The type of the JobDefinition is ""AWS::SageMaker::ModelExplainabilityJobDefinition""."
+26|What endpoints and ports does this component need to perform outbound requests?|"This component needs to perform outbound requests to the following endpoints and ports: 
+
+- Endpoint: edge.sagemaker.region.amazonaws.com, Port: 443. This is used to check device registration status and send metrics to SageMaker. 
+
+- Endpoint: *.s3.amazonaws.com, Port: 443. This is used to upload capture data to the S3 bucket that you specify. You can replace * with the name of each bucket where you upload data."|gpt-3.5-turbo|"This component needs to perform outbound requests to the following endpoints and ports:
+
+- Endpoint: edge.sagemaker.region.amazonaws.com
+  Port: 443
+  Required: Yes
+  Description: This endpoint is used to check device registration status and send metrics to SageMaker.
+
+- Endpoint: *.s3.amazonaws.com
+  Port: 443
+  Required: Yes
+  Description: This endpoint is used to upload capture data to the S3 bucket specified. The * can be replaced with the name of each bucket where data is uploaded.
+
+Please note that these are the required endpoints and ports for this component."
+27|What does the AWS::SageMaker::Endpoint CapacitySize property specify?|The AWS::SageMaker::Endpoint CapacitySize property specifies the endpoint capacity to activate for production. It defines the capacity size, either as a number of instances or a capacity percentage.|gpt-3.5-turbo|The AWS::SageMaker::Endpoint CapacitySize property specifies the endpoint capacity to activate for production. It defines the capacity size, either as a number of instances or a capacity percentage.
+28|What does the rule 'SAGEMAKER_ENDPOINT_CONFIGURATION_KMS_KEY_CONFIGURED' check for?|The rule 'SAGEMAKER_ENDPOINT_CONFIGURATION_KMS_KEY_CONFIGURED' checks whether an AWS Key Management Service (KMS) key is configured for an Amazon SageMaker endpoint configuration. It determines if the 'KmsKeyId' is specified for the endpoint configuration. If the 'KmsKeyId' is not specified, the rule is considered NON_COMPLIANT.|gpt-3.5-turbo|The rule 'SAGEMAKER_ENDPOINT_CONFIGURATION_KMS_KEY_CONFIGURED' checks whether an AWS Key Management Service (KMS) key is configured for an Amazon SageMaker endpoint configuration. It determines if the 'KmsKeyId' is specified for the endpoint configuration. If the 'KmsKeyId' is not specified, the rule is considered NON_COMPLIANT.
+29|What is the LocalPath for the ModelQualityJobOutputConfig?|The LocalPath for the ModelQualityJobOutputConfig is '/opt/ml/processing/localpath'.|gpt-3.5-turbo|"The LocalPath for the ModelQualityJobOutputConfig is ""/opt/ml/processing/localpath""."
