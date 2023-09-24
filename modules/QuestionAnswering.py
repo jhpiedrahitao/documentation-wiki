@@ -7,7 +7,6 @@ from langchain.chains import RetrievalQA
 if __name__ == "__main__":
     from DocumentEmbedder import DocumentEmbedder
 
-langchain.debug = True
 load_dotenv()
 
 class QuestionAnswering:
@@ -16,6 +15,7 @@ class QuestionAnswering:
 
     Args:
         documentEmbedder (DocumentEmbedder): The documentEmbedder object used for storing documents to retrieve within the questions.
+        verbose (bool): Whether or not log all langchain steps
         behavior (str, optional): String describing an aditionl behavior for the LLM to follow. Default is None 
         template (str, optional): The template to be used among the bahavior param, as Propmt template. Default is:
             '''Use the following pieces of context to answer the question at the end.
@@ -32,7 +32,7 @@ class QuestionAnswering:
         answer(self, text: str):
             Returns the answer for a user query.
     """
-    def __init__(self, documentEmbedder, documents_amount=5, behavior="", template="""
+    def __init__(self, documentEmbedder, documents_amount=5, behavior="", verbose=True,template="""
             Use the following pieces of context to answer the question at the end.
             If you don't know the answer, just say that you don't know, don't try to make up an answer.
             {context}, 
@@ -46,6 +46,7 @@ class QuestionAnswering:
         Args:
         documentEmbedder (DocumentEmbedder): The documentEmbedder object used for storing documents to retrieve within the questions.
         behavior (str, optional): String describing an aditionl behavior for the LLM to follow. Default is None 
+        verbose (bool): Whether or not log all langchain steps
         template (str, optional): The template to be used among the bahavior param, as Propmt template. Default is:
             '''Use the following pieces of context to answer the question at the end.
             If you don't know the answer, just say that you don't know, don't try to make up an answer.
@@ -57,10 +58,12 @@ class QuestionAnswering:
         """        
         self.vector_db_path = documentEmbedder.output_folder_path 
         self.embeddings=documentEmbedder.embeddings
+        self.verbose = verbose
         self.template = behavior + template
         self.llm= ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0) 
         self.documents_amount = documents_amount
         self.set_retrieval()
+        langchain.debug = self.verbose
 
     def set_retrieval(self):
         """
@@ -76,7 +79,7 @@ class QuestionAnswering:
                                      chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}, 
                                      retriever=vectorstore.as_retriever(search_type="similarity",search_kwargs={'k': self.documents_amount, 'lambda_mult': 0.5}),
                                      return_source_documents=True, 
-                                     verbose=True
+                                     verbose=self.verbose
                                     )
 
     def answer(self, text:str):
