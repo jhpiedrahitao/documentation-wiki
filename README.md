@@ -40,7 +40,7 @@ for the tested case, 30 question-and-answer pairs were automatically generated a
 ``` LLM Based Evaluation Accuracy: 0.9 ```  
 qa pairs and responses evaluation are in the eval folder
 
-## Future Enhancements
+## Future Work
 - Including, human validation metrics, perplexity, response time, cost, and other relevant metrics in the evaluation module  
 - Include WandB library for tracking experiments in the evaluation module
 - Evaluate metrics of the system changing parameters for splitting, LLM model, embedding, retrieval method
