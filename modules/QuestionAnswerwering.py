@@ -17,14 +17,20 @@ class QuestionAnswering:
         documentEmbedder (DocumentEmbedder): The documentEmbedder object used for storing documents to retrieve within the questions.
         behavior (str, optional): String describing an aditionl behavior for the LLM to follow. Default is None 
         template (str, optional): The template to be used among the bahavior param, as Propmt template. Default is:
-            Use the following pieces of context to answer the question at the end.
+            '''Use the following pieces of context to answer the question at the end.
             If you don't know the answer, just say that you don't know, don't try to make up an answer.
             {context}, 
             
             Question: {question}
             Helpful Answer:
-    """
+            '''
+    Methods:
+        set_retrieval(self, documents_amount: int = 3):
+            Set the retriever to be used for question answering.
 
+        answer(self, text: str):
+            Returns the answer for a user query.
+    """
     def __init__(self, documentEmbedder, behavior="", template="""
             Use the following pieces of context to answer the question at the end.
             If you don't know the answer, just say that you don't know, don't try to make up an answer.
@@ -33,6 +39,21 @@ class QuestionAnswering:
             Question: {question}
             Helpful Answer:
             """):
+        """
+        Initializes a QuestionAnswering object
+
+        Args:
+        documentEmbedder (DocumentEmbedder): The documentEmbedder object used for storing documents to retrieve within the questions.
+        behavior (str, optional): String describing an aditionl behavior for the LLM to follow. Default is None 
+        template (str, optional): The template to be used among the bahavior param, as Propmt template. Default is:
+            '''Use the following pieces of context to answer the question at the end.
+            If you don't know the answer, just say that you don't know, don't try to make up an answer.
+            {context}, 
+            
+            Question: {question}
+            Helpful Answer:
+            '''
+        """        
         self.vector_db_path = documentEmbedder.output_folder_path 
         self.embeddings=documentEmbedder.embeddings
         self.template = behavior + template
@@ -45,6 +66,9 @@ class QuestionAnswering:
 
         Args:
             documents_amount (int): The number of docmuents to be retrieved in each query. Default is 3
+
+        Returns:
+            None
         """
         vectorstore = FAISS.load_local(folder_path=self.vector_db_path, embeddings=self.embeddings)
         QA_CHAIN_PROMPT = PromptTemplate.from_template(self.template)

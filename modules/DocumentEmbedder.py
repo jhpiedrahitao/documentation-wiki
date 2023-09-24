@@ -12,16 +12,41 @@ load_dotenv()
 
 class DocumentEmbedder:
     """
-    DocumentEmbedder is a class for loafing, splitting, embedding and storing documents in a Vector Database.
+    DocumentEmbedder is a class for loading, splitting, embedding, and storing documents in a Vector Database.
 
     Args:
         knowledge_base (str): The name path of the knowledge base.
         documents_path (str, optional): The path to the directory containing RAW knowledge base. Default is "Documents".
         output_path (str, optional): The path to the directory where the vectorized documents will be stored. Default is "Storage".
-        embeddings (langchain embedding, optional), embedding to use to vectorize documents 
-    """
+        embeddings (langchain embedding, optional): The embedding to use to vectorize documents.
 
+    Methods:
+        load_txt(self, path: str):
+            Load a text document from a file.
+
+        load_md(self, path: str):
+            Load a markdown document from a file.
+
+        split_documents(self, documents, chunk_size: int = 1000, chunk_overlap: int = 200):
+            Split long documents into smaller chunks.
+
+        vectorize_and_store(self):
+            Vectorize the documents and store them using FAISS vector store.
+
+        update_knowledge(self):
+            Update the knowledge base by loading, splitting, vectorizing, and storing documents.
+
+    """
     def __init__(self, knowledge_base: str, documents_path: str = "Documents", output_path: str = "Storage", embeddings = OpenAIEmbeddings()):
+        """
+        Initializes a DocummentEmbedder object
+        
+        Args:
+            knowledge_base (str): The name path of the knowledge base.
+            documents_path (str, optional): The path to the directory containing RAW knowledge base. Default is "Documents".
+            output_path (str, optional): The path to the directory where the vectorized documents will be stored. Default is "Storage".
+            embeddings (langchain embedding, optional), embedding to use to vectorize documents 
+        """           
         self.knowledge_base = knowledge_base
         self.documents_path = documents_path
         self.output_folder_path = os.path.join(output_path, self.knowledge_base)
@@ -81,6 +106,9 @@ class DocumentEmbedder:
     def vectorize_and_store(self):
         """
         Vectorize the documents and store them using FAISS vector store.
+
+        Returns:
+            None
         """
         embeddings = self.embeddings
         print(f"{len(self.documents)} documents will be stored")
@@ -94,7 +122,7 @@ class DocumentEmbedder:
         Update the knowledge base by loading, splitting, vectorizing, and storing documents.
 
         Returns:
-        Boolean: True after successful update
+            Boolean: True after successful update
         """
         files = os.listdir(os.path.join(self.documents_path, self.knowledge_base))
         for file in files:
