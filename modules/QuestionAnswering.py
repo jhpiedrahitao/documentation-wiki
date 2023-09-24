@@ -103,8 +103,8 @@ class QuestionAnswering:
 
 if __name__ == "__main__":
     # Making a question given a DocumentEmbedder of a specific knowledge base  
-    documentEmbedder = DocumentEmbedder("sagemaker_documentation")
+    document_embedder = DocumentEmbedder("sagemaker_documentation")
     #documentEmbedder.update_knowledge()
-    qa=QuestionAnswering(documentEmbedder)
+    qa=QuestionAnswering(document_embedder)
     print(qa.answer("what is the folder structure when a model is trained"))
 

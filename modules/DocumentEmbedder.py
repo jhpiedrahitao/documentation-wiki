@@ -117,9 +117,12 @@ class DocumentEmbedder:
         )
         vectorstore.save_local(os.path.join(self.output_folder_path))
 
-    def update_knowledge(self):
+    def update_knowledge(self, store=True):
         """
         Update the knowledge base by loading, splitting, vectorizing, and storing documents.
+
+        Args:
+            store (Bool, optional): Whether to vectorize and store or not 
 
         Returns:
             Boolean: True after successful update
@@ -142,11 +145,12 @@ class DocumentEmbedder:
             if document:
                 self.documents += document
         self.documents = self.split_documents(self.documents)
-        self.vectorize_and_store()
+        if store:
+            self.vectorize_and_store()
         return(True)
 
 
 if __name__ == "__main__":
     # Create an instance of DocumentEmbedder for a specific knowledge base and update the knowledge base
-    documentEmbedder = DocumentEmbedder("sagemaker_documentation")
-    documentEmbedder.update_knowledge()
+    document_embedder = DocumentEmbedder("sagemaker_documentation")
+    document_embedder.update_knowledge()
