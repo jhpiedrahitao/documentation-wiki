@@ -4,7 +4,8 @@ from langchain.vectorstores import FAISS
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
-from DocumentEmbedder import DocumentEmbedder
+if __name__ == "__main__":
+    from DocumentEmbedder import DocumentEmbedder
 
 langchain.debug = True
 load_dotenv()
@@ -104,7 +105,7 @@ class QuestionAnswering:
 if __name__ == "__main__":
     # Making a question given a DocumentEmbedder of a specific knowledge base  
     documentEmbedder = DocumentEmbedder("sagemaker_documentation")
-    documentEmbedder.update_knowledge()
+    #documentEmbedder.update_knowledge()
     qa=QuestionAnswering(documentEmbedder)
     print(qa.answer("what is the folder structure when a model is trained"))
 
