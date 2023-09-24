@@ -1,6 +1,10 @@
 langchain==0.0.300
 openai==0.28.0
-unestructured
-python-dotenv
-tiktoken
-faiss-cpu
+unstructured==0.10.16
+python-dotenv==1.0.0
+tiktoken==0.5.1
+faiss-cpu==1.7.4
+flask==2.3.3
+flask_cors==4.0.0
+gunicorn==21.2.0
+streamlit==1.27.0
