@@ -13,22 +13,25 @@ CORS(app)
 STREAMLIT_APP_URL = "/streamlit_app"
 
 knowledge_base="sagemaker_documentation"
-#documentUpdater.update_document_files_from_awsdocs(knowledge_base)
-documentUpdater.update_document_files_from_awsdocs_mock(knowledge_base)
-sagemaker_documentEmbedder = DocumentEmbedder(knowledge_base=knowledge_base)
-#sagemaker_documentEmbedder.update_knowledge()
+sagemaker_document_embedder = DocumentEmbedder(knowledge_base=knowledge_base)
+if not os.path.exists(os.path.join("Storage",knowledge_base,"index.faiss")):
+    documentUpdater.update_document_files_from_awsdocs_mock(knowledge_base)
+    sagemaker_document_embedder.update_knowledge()
+    print("vector db not found, vector db updated")
+else:
+    print("vector db found, updating skiped")
 behavior = "You are the knowlegebase with the updated documentation of sagemaker tool \nQuestions are made by developers"
-sagemaker_question_answering = QuestionAnswering(sagemaker_documentEmbedder, behavior=behavior)
+sagemaker_question_answering = QuestionAnswering(sagemaker_document_embedder, behavior=behavior)
 
 @app.route("/update_knowledge", methods=["POST"])
 def updateknowledge():
     #Updating endpoit, calls method for fetching changes in documents and update vector database
     #documentUpdater.update_document_files_from_awsdocs(knowledge_base)
     documentUpdater.update_document_files_from_awsdocs_mock(knowledge_base)
-    sagemaker_documentEmbedder.update_knowledge()
+    sagemaker_document_embedder.update_knowledge()
     global sagemaker_question_answering
-    sagemaker_question_answering = QuestionAnswering(sagemaker_documentEmbedder, behavior=behavior)
-    return True
+    sagemaker_question_answering = QuestionAnswering(sagemaker_document_embedder, behavior=behavior)
+    return json.dumps({"updated":True})
 
 @app.route("/sagemaker", methods=["POST"])
 def sagemaker_question():
