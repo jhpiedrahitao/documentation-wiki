@@ -12,25 +12,25 @@ This project aims to develop a Documentation Assistance Tool to help Company X's
 6. **Evaluation Module**: Metrics and evaluation methods to measure the tool's effectiveness.
 
 ## Deployment
-For simple deployment of the docker containerized application execute the following commands
-    ```sh
-    ./build.sh
-    ./start.sh
-    ```
+put your openai access token in the ```.env``` file (example in ```.env example``` file)  
+For simple deployment of the docker containerized application execute the following commands  
+```sh
+./build.sh
+./start.sh
+```
 
 ## Usage
 ### User Interface
-    you can try the aplication via simple user interface after lauching 
-    [0.0.0.0:8888](http://0.0.0.0:8888)
+you can try the aplication via simple user interface after deploying  
+[0.0.0.0:8888](http://0.0.0.0:8888)
 ### REST API
-    Uri: 0.0.0.0:5589/sagemaker](http://0.0.0.0:5589/sagemaker)
-    Method: POST
-    Data: "question":"your question here" (formdata)
+Uri: [0.0.0.0:5589/sagemaker](http://0.0.0.0:5589/sagemaker)  
+Method: POST  
+Data: "question":"your question here" (formdata)
 ### CURL
-    ```sh
-    curl --location '0.0.0.0:5589/sagemaker' \
-    --form 'question="your question here"'
-    ```
+```sh
+curl --location '0.0.0.0:5589/sagemaker' \
+--form 'question="your question here"'
+```
 
-
-
+## Future Enhancements
